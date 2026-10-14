@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <!-- Use a MAUI framework that matches common tooling; change to net8.0-* only if your SDK/workloads support it -->
+    <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseMaui>true</UseMaui>
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
     <MauiUseMaps>true</MauiUseMaps>
-    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+
+    <!-- Set minimum Android SDK level explicitly instead of SupportedOSPlatformVersion -->
+    <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
   </PropertyGroup>
 
   <ItemGroup>
