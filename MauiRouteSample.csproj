@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Use a MAUI framework that matches common tooling; change to net8.0-* only if your SDK/workloads support it -->
-    <TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+    <!-- Target .NET 8 MAUI frameworks (ensure your SDK/workloads support these platform versions) -->
+    <TargetFrameworks>net8.0-android34.0;net8.0-ios17.2;net8.0-maccatalyst17.2</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -9,12 +9,12 @@
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
     <MauiUseMaps>true</MauiUseMaps>
 
-    <!-- Set minimum Android SDK level explicitly instead of SupportedOSPlatformVersion -->
+    <!-- Minimum Android SDK level -->
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Maui" Version="8.1.0" />
-    <!-- Microsoft.Maui.Controls.Maps is included via the MAUI SDK when MauiUseMaps is true -->
+    <!-- CommunityToolkit.Maui 9.x targets .NET 8 -->
+    <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
   </ItemGroup>
 </Project>
