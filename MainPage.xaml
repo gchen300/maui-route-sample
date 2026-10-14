@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             x:Class="MauiRouteSample.MainPage"
+             Title="Pickup Route">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="10">
+        <Label Text="Tap on the map to add up to 4 pickup locations" FontAttributes="Bold" />
+        <maps:Map x:Name="Map" Grid.Row="1" VerticalOptions="Fill" MapType="Street" />
+        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10" Padding="0,8,0,0">
+            <Button Text="Clear" Clicked="Clear_Clicked" />
+            <Button Text="Calculate & Navigate" Clicked="Calculate_Clicked" HorizontalOptions="EndAndExpand" />
+        </StackLayout>
+    </Grid>
+</ContentPage>

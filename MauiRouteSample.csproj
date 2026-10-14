@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseMaui>true</UseMaui>
+    <ApplicationTitle>MauiRouteSample</ApplicationTitle>
+    <MauiUseMaps>true</MauiUseMaps>
+    <SupportedOSPlatformVersion>21</SupportedOSPlatformVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Maui" Version="8.1.0" />
+    <!-- Microsoft.Maui.Controls.Maps is included via the MAUI SDK when MauiUseMaps is true -->
+  </ItemGroup>
+</Project>

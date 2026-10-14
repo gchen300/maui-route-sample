@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- Location usage description -->
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>We need your location to compute routes and navigate.</string>
+    <!-- If you will use background location, add NSLocationAlwaysAndWhenInUseUsageDescription -->
+    <!-- To use Apple Maps natively you could add further keys; this sample opens Google Maps URL. -->
+  </dict>
+</plist>
