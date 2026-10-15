@@ -14,13 +14,10 @@ public static class MauiProgram
         builder
             .UseMauiApp<App>()
             .UseMauiCommunityToolkit()
-            .UseMauiMaps()
             .ConfigureFonts(fonts => { /* add fonts if desired */ });
 
-        // Register pages & services
         builder.Services.AddSingleton<MainPage>();
 
-        // Replace with your Google Directions & Geocoding API key (must have Directions & Geocoding APIs enabled)
         const string googleApiKey = "YOUR_GOOGLE_API_KEY";
 
         builder.Services.AddSingleton<IRouteService>(sp =>

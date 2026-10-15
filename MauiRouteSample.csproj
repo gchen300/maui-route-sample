@@ -6,15 +6,12 @@
     <Nullable>enable</Nullable>
     <UseMaui>true</UseMaui>
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
-    <MauiUseMaps>true</MauiUseMaps>
-    <MauiUseMapsIncludePackage>true</MauiUseMapsIncludePackage>
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
     <AndroidTargetSdkVersion>34</AndroidTargetSdkVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
-    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.100" />
     <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
   </ItemGroup>
 </Project>

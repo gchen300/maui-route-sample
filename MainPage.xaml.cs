@@ -1,17 +1,15 @@
 using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Maps;
 using Microsoft.Maui.Devices.Sensors;
 using MauiRouteSample.Models;
 using MauiRouteSample.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MauiRouteSample;
 public partial class MainPage : ContentPage
 {
-    readonly List<Pin> _pins = new();
+    readonly List<string> _addresses = new();
     readonly List<LatLng> _points = new();
     readonly IRouteService _routeService;
     readonly IMapLauncher _mapLauncher;
@@ -25,11 +23,7 @@ public partial class MainPage : ContentPage
         _mapLauncher = mapLauncher ?? throw new ArgumentNullException(nameof(mapLauncher));
         _geocoder = geocoder ?? throw new ArgumentNullException(nameof(geocoder));
 
-        // center to a sensible default (Seattle)
-        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(
-            new Microsoft.Maui.Controls.Maps.Position(47.6062, -122.3321),
-            0.5,
-            0.5));
+        RefreshPickupList();
     }
 
     private async void AddAddress_Clicked(object sender, EventArgs e)
@@ -56,22 +50,9 @@ public partial class MainPage : ContentPage
                 return;
             }
 
+            _addresses.Add(address);
             _points.Add(loc);
-
-            var pin = new Pin
-            {
-                Label = $"Pickup {_points.Count}",
-                Location = new Microsoft.Maui.Controls.Maps.Position(loc.Latitude, loc.Longitude),
-                Type = PinType.Place
-            };
-
-            _pins.Add(pin);
-            Map.Pins.Add(pin);
-
-            // move map to show latest pin
-            Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(
-                new Microsoft.Maui.Controls.Maps.Position(loc.Latitude, loc.Longitude), 0.2, 0.2));
-
+            RefreshPickupList();
             AddressEntry.Text = string.Empty;
         }
         catch (Exception ex)
@@ -80,11 +61,36 @@ public partial class MainPage : ContentPage
         }
     }
 
+    private void RefreshPickupList()
+    {
+        PickupContainer.Children.Clear();
+
+        if (_addresses.Count == 0)
+        {
+            PickupContainer.Children.Add(new Label
+            {
+                Text = "No pickups added yet.",
+                HorizontalTextAlignment = TextAlignment.Center,
+                VerticalTextAlignment = TextAlignment.Center
+            });
+            return;
+        }
+
+        for (int i = 0; i < _addresses.Count; i++)
+        {
+            PickupContainer.Children.Add(new Label
+            {
+                Text = $"{i + 1}. {_addresses[i]}",
+                FontAttributes = FontAttributes.Bold
+            });
+        }
+    }
+
     private void Clear_Clicked(object sender, EventArgs e)
     {
-        foreach (var p in _pins) Map.Pins.Remove(p);
-        _pins.Clear();
+        _addresses.Clear();
         _points.Clear();
+        RefreshPickupList();
     }
 
     private async void Calculate_Clicked(object sender, EventArgs e)
@@ -107,16 +113,7 @@ public partial class MainPage : ContentPage
             }
 
             var origin = new LatLng(geo.Latitude, geo.Longitude);
-
             var ordered = await _routeService.GetOptimizedWaypointsAsync(origin, _points);
-
-            // update labels on pins to show sequence
-            for (int i = 0; i < ordered.Count; i++)
-            {
-                var o = ordered[i];
-                var match = _pins.FirstOrDefault(p => Math.Abs(p.Location.Latitude - o.Latitude) < 1e-6 && Math.Abs(p.Location.Longitude - o.Longitude) < 1e-6);
-                if (match != null) match.Label = $"Stop {i + 1}";
-            }
 
             await _mapLauncher.LaunchNavigationAsync(origin, ordered);
         }
