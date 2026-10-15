@@ -9,9 +9,9 @@
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
     <AndroidTargetSdkVersion>34</AndroidTargetSdkVersion>
 
-    <!-- App icons: single SVG used to generate platform-specific icons -->
-    <ApplicationIcon>Resources\Images\AppIcon.svg</ApplicationIcon>
-    <ApplicationDisplayIcon>Resources\Images\AppIcon.svg</ApplicationDisplayIcon>
+    <!-- Use the PNG as the Android app icon; avoid Windows-resources ICO issue on Android-only builds -->
+    <ApplicationIcon>Resources\Images\route_app_icon.png</ApplicationIcon>
+    <ApplicationDisplayIcon>Resources\Images\route_app_icon.png</ApplicationDisplayIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Ensure the SVG is treated as a MAUI image asset -->
-    <MauiImage Include="Resources\Images\AppIcon.svg" />
+    <MauiImage Include="Resources\Images\route_app_icon.png" />
   </ItemGroup>
 </Project>
