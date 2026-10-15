@@ -10,7 +10,7 @@
         <maps:Map x:Name="Map" Grid.Row="1" VerticalOptions="Fill" MapType="Street" />
         <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10" Padding="0,8,0,0">
             <Button Text="Clear" Clicked="Clear_Clicked" />
-            <Button Text="Calculate & Navigate" Clicked="Calculate_Clicked" HorizontalOptions="EndAndExpand" />
+            <Button Text="Calculate &amp; Navigate" Clicked="Calculate_Clicked" HorizontalOptions="EndAndExpand" />
         </StackLayout>
     </Grid>
 </ContentPage>

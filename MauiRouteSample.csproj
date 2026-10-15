@@ -15,6 +15,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- Microsoft.Maui.Controls is required explicitly starting with .NET 8 -->
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
+    <!-- Maps assembly; include explicitly to ensure Maps types are available -->
+    <PackageReference Include="Microsoft.Maui.Controls.Maps" Version="8.0.100" />
     <!-- CommunityToolkit.Maui 9.x targets .NET 8 -->
     <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
   </ItemGroup>
