@@ -26,7 +26,8 @@ public partial class MainPage : ContentPage
         Map.MapClicked += Map_MapClicked;
 
         // center to a sensible default (Seattle) until we obtain location
-        Map.MoveToRegion(MapSpan.FromCenterAndRadius(new Microsoft.Maui.Controls.Maps.Location(47.6062, -122.3321), Distance.FromKilometers(5)));
+        // Use MapSpan constructor directly to avoid depending on Distance/MapSpan helpers
+        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(new Microsoft.Maui.Controls.Maps.Location(47.6062, -122.3321), 0.5, 0.5));
     }
 
     private void Map_MapClicked(object sender, MapClickedEventArgs e)

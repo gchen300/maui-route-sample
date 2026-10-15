@@ -3,6 +3,7 @@ using Microsoft.Maui.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using MauiRouteSample.Services;
 using System.Net.Http;
+using CommunityToolkit.Maui;
 
 namespace MauiRouteSample;
 public static class MauiProgram
@@ -12,6 +13,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit() // CommunityToolkit must be chained to UseMauiApp
             .UseMauiMaps() // enable maps
             .ConfigureFonts(fonts => { /* add fonts if desired */ });
 
