@@ -17,12 +17,16 @@ public static class MauiProgram
             .UseMauiMaps()
             .ConfigureFonts(fonts => { /* add fonts if desired */ });
 
+        // Register pages & services
         builder.Services.AddSingleton<MainPage>();
 
-        const string googleDirectionsApiKey = "YOUR_GOOGLE_DIRECTIONS_API_KEY";
+        // Replace with your Google Directions & Geocoding API key (must have Directions & Geocoding APIs enabled)
+        const string googleApiKey = "YOUR_GOOGLE_API_KEY";
 
         builder.Services.AddSingleton<IRouteService>(sp =>
-            new GoogleDirectionsService(new HttpClient(), googleDirectionsApiKey));
+            new GoogleDirectionsService(new HttpClient(), googleApiKey));
+        builder.Services.AddSingleton<IGeocodingService>(sp =>
+            new GoogleGeocodingService(new HttpClient(), googleApiKey));
         builder.Services.AddSingleton<IMapLauncher, MapLauncherService>();
 
         return builder.Build();
