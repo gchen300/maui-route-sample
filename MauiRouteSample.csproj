@@ -8,10 +8,19 @@
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
     <AndroidTargetSdkVersion>34</AndroidTargetSdkVersion>
+
+    <!-- App icons: single SVG used to generate platform-specific icons -->
+    <ApplicationIcon>Resources\Images\AppIcon.svg</ApplicationIcon>
+    <ApplicationDisplayIcon>Resources\Images\AppIcon.svg</ApplicationDisplayIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
     <PackageReference Include="CommunityToolkit.Maui" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Ensure the SVG is treated as a MAUI image asset -->
+    <MauiImage Include="Resources\Images\AppIcon.svg" />
   </ItemGroup>
 </Project>
