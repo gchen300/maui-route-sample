@@ -8,8 +8,10 @@
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>
     <AndroidTargetSdkVersion>34</AndroidTargetSdkVersion>
+  </PropertyGroup>
 
-    <!-- Use the PNG as the Android app icon; avoid Windows-resources ICO issue on Android-only builds -->
+  <!-- Android-specific icon settings only (prevents Windows resource compiler from trying to use a PNG as an .ico) -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net8.0-android'">
     <ApplicationIcon>Resources\Images\route_app_icon.png</ApplicationIcon>
     <ApplicationDisplayIcon>Resources\Images\route_app_icon.png</ApplicationDisplayIcon>
   </PropertyGroup>
@@ -20,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Ensure the PNG is treated as a MAUI image asset for Android -->
     <MauiImage Include="Resources\Images\route_app_icon.png" />
   </ItemGroup>
 </Project>
