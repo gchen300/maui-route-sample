@@ -26,7 +26,6 @@ public partial class MainPage : ContentPage
         Map.MapClicked += Map_MapClicked;
 
         // center to a sensible default (Seattle) until we obtain location
-        // Use Position with MapSpan to avoid missing helper types
         Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(new Microsoft.Maui.Controls.Maps.Position(47.6062, -122.3321), 0.5, 0.5));
     }
 
@@ -79,7 +78,7 @@ public partial class MainPage : ContentPage
 
             var origin = new LatLng(geo.Latitude, geo.Longitude);
 
-            var ordered = await _route_service.GetOptimizedWaypointsAsync(origin, _points);
+            var ordered = await _routeService.GetOptimizedWaypointsAsync(origin, _points);
 
             // update labels on pins to show sequence
             for (int i = 0; i < ordered.Count; i++)
