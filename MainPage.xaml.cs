@@ -6,7 +6,6 @@ using MauiRouteSample.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MauiRouteSample;
 public partial class MainPage : ContentPage
@@ -25,8 +24,10 @@ public partial class MainPage : ContentPage
 
         Map.MapClicked += Map_MapClicked;
 
-        // center to a sensible default (Seattle) until we obtain location
-        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(new Microsoft.Maui.Controls.Maps.Position(47.6062, -122.3321), 0.5, 0.5));
+        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(
+            new Microsoft.Maui.Controls.Maps.Position(47.6062, -122.3321),
+            0.5,
+            0.5));
     }
 
     private void Map_MapClicked(object sender, MapClickedEventArgs e)
@@ -77,14 +78,15 @@ public partial class MainPage : ContentPage
             }
 
             var origin = new LatLng(geo.Latitude, geo.Longitude);
-
             var ordered = await _routeService.GetOptimizedWaypointsAsync(origin, _points);
 
-            // update labels on pins to show sequence
             for (int i = 0; i < ordered.Count; i++)
             {
                 var o = ordered[i];
-                var match = _pins.FirstOrDefault(p => Math.Abs(p.Location.Latitude - o.Latitude) < 1e-6 && Math.Abs(p.Location.Longitude - o.Longitude) < 1e-6);
+                var match = _pins.FirstOrDefault(p =>
+                    Math.Abs(p.Location.Latitude - o.Latitude) < 1e-6 &&
+                    Math.Abs(p.Location.Longitude - o.Longitude) < 1e-6);
+
                 if (match != null) match.Label = $"Stop {i + 1}";
             }
 
