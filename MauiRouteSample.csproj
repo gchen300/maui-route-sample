@@ -8,6 +8,7 @@
     <UseMaui>true</UseMaui>
     <ApplicationTitle>MauiRouteSample</ApplicationTitle>
     <MauiUseMaps>true</MauiUseMaps>
+    <MauiUseMapsIncludePackage>true</MauiUseMapsIncludePackage>
 
     <!-- Android SDK settings: min + target -->
     <AndroidMinSdkVersion>21</AndroidMinSdkVersion>

@@ -26,8 +26,8 @@ public partial class MainPage : ContentPage
         Map.MapClicked += Map_MapClicked;
 
         // center to a sensible default (Seattle) until we obtain location
-        // Use MapSpan constructor directly to avoid depending on Distance/MapSpan helpers
-        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(new Microsoft.Maui.Controls.Maps.Location(47.6062, -122.3321), 0.5, 0.5));
+        // Use Position with MapSpan to avoid missing helper types
+        Map.MoveToRegion(new Microsoft.Maui.Controls.Maps.MapSpan(new Microsoft.Maui.Controls.Maps.Position(47.6062, -122.3321), 0.5, 0.5));
     }
 
     private void Map_MapClicked(object sender, MapClickedEventArgs e)
@@ -44,7 +44,7 @@ public partial class MainPage : ContentPage
         var pin = new Pin
         {
             Label = $"Pickup {_points.Count}",
-            Location = new Microsoft.Maui.Controls.Maps.Location(latlng.Latitude, latlng.Longitude),
+            Location = new Microsoft.Maui.Controls.Maps.Position(latlng.Latitude, latlng.Longitude),
             Type = PinType.Place
         };
         _pins.Add(pin);
@@ -79,7 +79,7 @@ public partial class MainPage : ContentPage
 
             var origin = new LatLng(geo.Latitude, geo.Longitude);
 
-            var ordered = await _routeService.GetOptimizedWaypointsAsync(origin, _points);
+            var ordered = await _route_service.GetOptimizedWaypointsAsync(origin, _points);
 
             // update labels on pins to show sequence
             for (int i = 0; i < ordered.Count; i++)
